@@ -57,7 +57,7 @@ const Container = styled.div`
 const Header: React.FC = () => {
 	return (
 		<Container>
-			<Link href="/">
+			<Link href="/" legacyBehavior>
 				<a className="header-logo-wrapper">
 					<AirBnBLogoIcon className="header-logo" />
 					<AirBnBLogoTextIcon />
