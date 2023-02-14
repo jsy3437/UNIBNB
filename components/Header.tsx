@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import palette from '../styles/palette';
 import AirBnBLogoIcon from '../public/static/svg/logo/airbnb_logo.svg';
 import AirBnBLogoTextIcon from '../public/static/svg/logo/airbnb_logo_text.svg';
-import SignUpModal from './auth/SignUpModal';
+import SignUpModal from './auths/SignUpModal';
 import useModal from '../hooks/useModal';
 
 const Container = styled.div`
