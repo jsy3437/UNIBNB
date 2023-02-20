@@ -4,13 +4,14 @@ import CloseXIcon from '../../public/static/svg/auth/modal_close_x_icon.svg';
 import MailIcon from '../../public/static/svg/auth/mail.svg';
 import PersonIcon from '../../public/static/svg/auth/person.svg';
 import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
+import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
 import Input from '../common/Input';
 
 const Container = styled.form`
 	width: 568px;
 	padding: 32px;
 	background-color: white;
-	z-index: 11;
+	z-index: 12;
 
 	.mordal-close-x-icon {
 		cursor: pointer;
@@ -22,6 +23,12 @@ const Container = styled.form`
 		position: relative;
 		margin-bottom: 16px;
 	}
+
+	.sign-up-password-input-wrapper {
+		svg {
+			cursor: pointer;
+		}
+	}
 `;
 
 const SignUpModal: React.FC = () => {
@@ -29,6 +36,7 @@ const SignUpModal: React.FC = () => {
 	const [lastname, setLastname] = useState('');
 	const [firstname, setFirstname] = useState('');
 	const [password, setPassword] = useState('');
+	const [hidePassword, setHidePassword] = useState(true);
 
 	const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value);
@@ -44,6 +52,10 @@ const SignUpModal: React.FC = () => {
 
 	const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value);
+	};
+
+	const toggleHidePassword = () => {
+		setHidePassword(!hidePassword);
 	};
 
 	return (
@@ -75,11 +87,17 @@ const SignUpModal: React.FC = () => {
 					onChange={onChangeFirstname}
 				/>
 			</div>
-			<div className="input-wrapper">
+			<div className="input-wrapper sign-up-password-input-wrapper">
 				<Input
 					placeholder="비밀번호 설정하기"
-					type="password"
-					icon={<OpenedEyeIcon />}
+					type={hidePassword ? 'password' : 'text'}
+					icon={
+						hidePassword ? (
+							<ClosedEyeIcon onClick={toggleHidePassword} />
+						) : (
+							<OpenedEyeIcon onClick={toggleHidePassword} />
+						)
+					}
 					value={password}
 					onChange={onChangePassword}
 				/>
