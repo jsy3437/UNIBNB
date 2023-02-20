@@ -27,7 +27,8 @@ const useModal = () => {
 		setModalOpened(true);
 	};
 
-	const closeModal = () => {
+	const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.target !== e.currentTarget) return;
 		setModalOpened(false);
 	};
 
