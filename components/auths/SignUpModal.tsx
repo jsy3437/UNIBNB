@@ -8,7 +8,7 @@ import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
 import Input from '../common/Input';
 import palette from '../../styles/palette';
 import Selector from '../common/Selector';
-import { monthList } from '../../lib/staticData';
+import { dayList, monthList, yearList } from '../../lib/staticData';
 
 const Container = styled.form`
 	width: 568px;
@@ -44,6 +44,22 @@ const Container = styled.form`
 		margin-bottom: 16px;
 		color: ${palette.charcoal};
 	}
+
+	.sign-up-modal-birthday-selectors {
+		display: flex;
+		margin-bottom: 24px;
+		.sign-up-modal-birthday-month-selector {
+			margin-right: 16px;
+			flex-grow: 1;
+		}
+		.sign-up-modal-birthday-day-selector {
+			margin-right: 16px;
+			width: 25%;
+		}
+		.sign-up-modal-birthday-year-selector {
+			width: 33.3333%;
+		}
+	}
 `;
 
 const SignUpModal: React.FC = () => {
@@ -52,6 +68,9 @@ const SignUpModal: React.FC = () => {
 	const [firstname, setFirstname] = useState('');
 	const [password, setPassword] = useState('');
 	const [hidePassword, setHidePassword] = useState(true);
+	const [birthYear, setBirthYear] = useState<string | undefined>();
+	const [birthDay, setBirthDay] = useState<string | undefined>();
+	const [birthMonth, setBirthMonth] = useState<string | undefined>();
 
 	const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value);
@@ -67,6 +86,18 @@ const SignUpModal: React.FC = () => {
 
 	const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value);
+	};
+
+	const onChangeBirthMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setBirthMonth(event.target.value);
+	};
+
+	const onChangeBirthDay = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setBirthDay(event.target.value);
+	};
+
+	const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setBirthYear(event.target.value);
 	};
 
 	const toggleHidePassword = () => {
@@ -122,11 +153,35 @@ const SignUpModal: React.FC = () => {
 				만 18세 이상의 성인만 회원으로 가입할 수 있습니다. 생일은 다른
 				에어비엔비 이용자에게 공개되지 않습니다.
 			</p>
-			<Selector
-				options={['월', ...monthList]}
-				disabledOptions={['월']}
-				defaultValue="월"
-			/>
+			<div className="sign-up-modal-birthday-selectors">
+				<div className="sign-up-modal-birthday-month-selector">
+					<Selector
+						options={['월', ...monthList]}
+						disabledOptions={['월']}
+						defaultValue="월"
+						value={birthMonth}
+						onChange={onChangeBirthMonth}
+					/>
+				</div>
+				<div className="sign-up-modal-birthday-day-selector">
+					<Selector
+						options={['일', ...dayList]}
+						disabledOptions={['일']}
+						defaultValue={'일'}
+						value={birthDay}
+						onChange={onChangeBirthDay}
+					/>
+				</div>
+				<div className="sign-up-modal-birthday-year-selector">
+					<Selector
+						options={['년', ...yearList]}
+						disabledOptions={['년']}
+						defaultValue={'년'}
+						value={birthYear}
+						onChange={onChangeBirthYear}
+					/>
+				</div>
+			</div>
 		</Container>
 	);
 };
