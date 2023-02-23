@@ -44,8 +44,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				Date.now() + 60 * 60 * 24 * 1000 * 3
 			)}; httponly`
 		);
-
-		return res.end();
+		res.statusCode = 200;
+		return res.send(newUser);
 	}
 	res.statusCode = 405;
 
