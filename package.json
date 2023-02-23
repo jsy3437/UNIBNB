@@ -11,9 +11,11 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@types/jsonwebtoken": "^9.0.1",
 		"babel-plugin-inline-react-svg": "^2.0.1",
 		"babel-plugin-styled-components": "^2.0.7",
 		"bcryptjs": "^2.4.3",
+		"jsonwebtoken": "^9.0.0",
 		"next": "^13.1.6",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
