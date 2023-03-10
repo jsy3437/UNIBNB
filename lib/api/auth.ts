@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '.';
 
 interface SignUpAPIBody {
 	email: string;
@@ -9,5 +9,5 @@ interface SignUpAPIBody {
 }
 
 export const signupAPI = (body: SignUpAPIBody) => {
-	axios.post('api/auth/signup', body);
+	axios.post('auth/signup', body);
 };
