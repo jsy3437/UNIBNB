@@ -10,12 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    # strategy: 각 다른 환경에서 여러번 동작해야 하는 경우 사용할 수 있음
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # job들을 각 다른 노드버전에서 실행해서 잘 동작하는지 검증
-
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
