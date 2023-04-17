@@ -1,4 +1,5 @@
 import axios from '.';
+import { UserType } from '../../types/user';
 
 interface SignUpAPIBody {
 	email: string;
@@ -9,5 +10,5 @@ interface SignUpAPIBody {
 }
 
 export const signupAPI = (body: SignUpAPIBody) => {
-	axios.post('auth/signup', body);
+	axios.post<UserType>('auth/signup', body);
 };
